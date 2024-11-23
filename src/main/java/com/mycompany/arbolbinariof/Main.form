@@ -87,7 +87,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtOperacion" min="-2" pref="305" max="-2" attributes="0"/>
                                       <Component id="txtPreorden" min="-2" pref="305" max="-2" attributes="0"/>
-                                      <Component id="txtPreorden1" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
+                                      <Component id="txtPosorden" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -107,7 +107,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearArbol" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -123,7 +123,7 @@
                       <Component id="txtOperacion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCrearArbol" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
                           <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtPreorden1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPosorden" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -182,7 +182,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnCrearArbol">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a8" green="a8" red="8e" type="rgb"/>
@@ -193,7 +193,7 @@
             <Property name="text" type="java.lang.String" value="Crear &#xc1;rbol Binario"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearArbolActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -250,7 +250,7 @@
             <Property name="text" type="java.lang.String" value="Posorden"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPreorden1">
+        <Component class="javax.swing.JTextField" name="txtPosorden">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="dc" green="dc" red="c0" type="rgb"/>
