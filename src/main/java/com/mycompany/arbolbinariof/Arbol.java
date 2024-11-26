@@ -30,31 +30,31 @@ public class Arbol {
 
     // Método para construir el árbol a partir de una expresión aritmética
     public Nodo construirArbol(String expresion) {
-
         
-        //Eliminar los paréntesis extras
-        while (expresion.startsWith("(") && expresion.endsWith(")")) {
+        // Eliminar los paréntesis extras
+        while (expresion.startsWith("(") && expresion.endsWith(")") && esParentesisBalanceado(expresion.substring(1, expresion.length() - 1))) {
             expresion = expresion.substring(1, expresion.length() - 1);
-        }       
+        }
 
-        //Busca la raiz (el operador que va más arriba)
+        // Busca el operador principal considerando paréntesis
         int operadorPrincipal = encontrarOperadorPrincipal(expresion);
 
         if (operadorPrincipal == -1) {
-            return new Nodo(expresion); //No hay ninguna operacion, solo un número o letro, aquí termina la recursividad (CASO BASE)
+            return new Nodo(expresion.trim());  // No hay ninguna operación, solo un número o letra
         }
 
-        //Tomar el valor del operador principal
+        // Tomar el valor del operador principal
         String operador = String.valueOf(expresion.charAt(operadorPrincipal));
         Nodo nodo = new Nodo(operador);
 
-        //Toma la parte de la expresión que está a la izquierda del operador principal (del 0 hasta uno antes del operador) 
-        String izquierda = expresion.substring(0, operadorPrincipal);
+         //Toma la parte de la expresión que está a la izquierda del operador principal (del 0 hasta uno antes del operador) 
+        String izquierda = expresion.substring(0, operadorPrincipal).trim();
 
         //Toma la parte de la expresión que está a la derecha del operador principal (de uno después del operador hasta el final)
-        String derecha = expresion.substring(operadorPrincipal + 1);
+        String derecha = expresion.substring(operadorPrincipal + 1).trim();
 
-        //Crea los nodos izquierdos y derechos utilizando la recursividad hasta que termine todo el árbol (CASO RECURSIVO)
+
+        // Llamadas recursivas para construir subárboles
         nodo.izq = construirArbol(izquierda);
         nodo.der = construirArbol(derecha);
 
@@ -64,16 +64,22 @@ public class Arbol {
     private int encontrarOperadorPrincipal(String expresion) {
         int nivelParentesis = 0;
         int posicion = -1;
+        int minPrioridad = Integer.MAX_VALUE;
 
         for (int i = 0; i < expresion.length(); i++) {
             char c = expresion.charAt(i);
 
             if (c == '(') {
-                nivelParentesis++;
+                nivelParentesis++; // Aumentar el nivel cuando se encuentra un paréntesis de apertura
             } else if (c == ')') {
-                nivelParentesis--;
+                nivelParentesis--; // Disminuir el nivel cuando se encuentra un paréntesis de cierre
             } else if (nivelParentesis == 0 && esOperador(c)) {
-                if (posicion == -1 || prioridad(c) <= prioridad(expresion.charAt(posicion))) {
+                // Solo considerar operadores fuera de los paréntesis
+                int prioridadActual = prioridad(c);
+
+                // Asegurarse de seleccionar el operador con la menor prioridad
+                if (prioridadActual <= minPrioridad) {
+                    minPrioridad = prioridadActual;
                     posicion = i;
                 }
             }
@@ -81,6 +87,17 @@ public class Arbol {
 
         return posicion;
     }
+    
+    private boolean esParentesisBalanceado(String expresion) {
+        int nivel = 0;
+        for (char c : expresion.toCharArray()) {
+            if (c == '(') nivel++;
+            else if (c == ')') nivel--;
+            if (nivel < 0) return false; // Se cerró un paréntesis que no fue abierto
+        }
+        return nivel == 0; // Todos los paréntesis están balanceados
+    }
+    
 
     // Verificar si un carácter es operador
     private boolean esOperador(char c) {
@@ -121,17 +138,6 @@ public class Arbol {
         return "";
     }
     return imprimirPosOrden(nodo.izq) + imprimirPosOrden(nodo.der) + nodo.info + " ";
-}
-
-    // Imprimir árbol visualmente
-    public void imprimirArbol(Nodo nodo, int nivel) {
-        if (nodo != null) {
-            imprimirArbol(nodo.der, nivel + 1);
-            for (int i = 0; i < nivel; i++) {
-                System.out.print("   ");
-            }
-            System.out.println(nodo.info);
-            imprimirArbol(nodo.izq, nivel + 1);
-        }
     }
 }
+
